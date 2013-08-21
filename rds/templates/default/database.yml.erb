@@ -1,8 +1,9 @@
 production:
-  adapter: "mysql2"
-  database: "simple_rails_app"
+  adapter: <%= @database[:adapter].to_s.inspect %>
+  database: <%= @database[:database].to_s.inspect %>
   encoding: utf8
-  host: "localhost"
-  username: "root"
-  password: "root"
-  reconnect: true
+  host: <%= @database[:host].to_s.inspect %>
+  port: <%= @database[:port].to_s.inspect %>
+  username: <%= @database[:username].to_s.inspect %>
+  password: <%= @database[:password].to_s.inspect %>
+  reconnect: <%= @database[:reconnect].to_s.inspect %>

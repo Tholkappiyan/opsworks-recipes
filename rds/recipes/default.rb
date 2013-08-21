@@ -20,6 +20,7 @@ node[:deploy].each do |application, deploy|
     mode 0777
     owner "root"
     group "root"
+    variables(:database => deploy[:database])
 
     notifies :run, resources(:execute => "restart Rails app #{application}")
 
