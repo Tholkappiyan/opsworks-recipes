@@ -1,7 +1,7 @@
 Chef::Log.info "1234567890"
 Chef::Log.info "~~~~~~~~~~"
 Chef::Log.info "~~~~~~~~~~"
-Chef::Log.info "~~~~~~~~~~"
+Chef::Log.info "rds"
 Chef::Log.info "~~~~~~~~~~"
 Chef::Log.info "~~~~~~~~~~"
 Chef::Log.info "1234567890"
@@ -15,7 +15,7 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
 
-  template "#{deploy[:deploy_to]}/shared/database.yml" do
+  template "#{deploy[:deploy_to]}/shared/config/database.yml" do
     source "database.yml.erb"
     mode 0777
     owner "root"
@@ -27,5 +27,5 @@ node[:deploy].each do |application, deploy|
       File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/shared/config/")
     end
   end
-  
+
 end
