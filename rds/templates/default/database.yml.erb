@@ -1,6 +1,6 @@
 production:
   adapter: <%= @database[:adapter].to_s.inspect %>
-  database: <%= @database[:database].to_s.inspect %>
+  database: <%= @database[:database_name].to_s.inspect %>
   encoding: utf8
   host: <%= @database[:host].to_s.inspect %>
   port: <%= @database[:port].to_s.inspect %>
