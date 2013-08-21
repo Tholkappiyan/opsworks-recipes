@@ -21,6 +21,7 @@ node[:deploy].each do |application, deploy|
     owner "root"
     group "root"
     variables(:database => deploy[:database])
+    Chef::Log.info deploy[:database]
 
     notifies :run, resources(:execute => "restart Rails app #{application}")
 
