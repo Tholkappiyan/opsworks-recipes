@@ -9,10 +9,23 @@ Chef::Log.info "1234567890"
 node[:deploy].each do |application, deploy|
   deploy = node[:deploy][application]
   
-  template "/srv/www/simple_rails_app/shared/database.yml" do
+  execute "restart Rails app #{application}" do
+    cwd deploy[:current_path]
+    command node[:opsworks][:rails_stack][:restart_command]
+    action :nothing
+  end
+
+  template "#{deploy[:deploy_to]}/shared/database.yml" do
     source "database.yml.erb"
     mode 0777
     owner "root"
     group "root"
+
+    notifies :run, resources(:execute => "restart Rails app #{application}")
+
+    only_if do
+      File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/shared/config/")
+    end
   end
+  
 end
