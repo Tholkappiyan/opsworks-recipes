@@ -25,7 +25,7 @@ node[:deploy].each do |application, deploy|
     notifies :run, resources(:execute => "restart Rails app #{application}")
 
     only_if do
-      File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/shared/config/")
+      File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/current/config/")
     end
   end
 
