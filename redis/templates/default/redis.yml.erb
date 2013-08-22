@@ -1,0 +1,8 @@
+defaults: &defaults
+ host: <%= @hostname %>
+ port: 6379
+<%= @environment %>:
+  <<: *defaults
+
+slave:
+  <<: *defaults
