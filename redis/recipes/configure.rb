@@ -10,6 +10,8 @@ Chef::Log.info node[:opsworks][:layers][:redis][:instances][:redis1]
 
 Chef::Log.info node[:opsworks][:instance][:hostname]
 
+Chef::Log.info node[:environment]
+
 node[:deploy].each do |application, deploy|
   deploy = node[:deploy][application]
 
