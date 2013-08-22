@@ -19,17 +19,17 @@ node[:deploy].each do |application, deploy|
     mode 0777
     owner "root"
     group "root"
-    variables(:hostname => node[:opsworks][:layers][:redis][:instances][:redis1][:public_dns_name],
+    variables(:hostname => node[:opsworks][:layers][:redis][:instances][:redis1][:private_dns_name],
     					:environment => node[:deploy][application][:rails_env])
 
     notifies :run, resources(:execute => "restart Rails app #{application}")
 
     only_if do
-      File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/shared/config/")
+      File.exists?("#{deploy[:deploy_to]}/current")
     end
   end
 
-	Chef::Log.info node[:opsworks][:layers][:redis][:instances][:redis1][:public_dns_name]
+	Chef::Log.info node[:opsworks][:layers][:redis][:instances][:redis1][:private_dns_name]
   Chef::Log.info node[:deploy][application][:rails_env]
 
 end
