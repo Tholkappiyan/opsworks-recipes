@@ -14,7 +14,7 @@ node[:deploy].each do |application, deploy|
     action :nothing
   end
 
-  template "#{deploy[:deploy_to]}/shared/config/redis.yml" do
+  template "#{deploy[:deploy_to]}/current/config/redis.yml" do
     source "redis.yml.erb"
     mode 0777
     owner "root"
@@ -25,7 +25,7 @@ node[:deploy].each do |application, deploy|
     notifies :run, resources(:execute => "restart Rails app #{application}")
 
     only_if do
-      File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/current/config/")
+      File.exists?("#{deploy[:deploy_to]}") && File.exists?("#{deploy[:deploy_to]}/shared/config/")
     end
   end
 
