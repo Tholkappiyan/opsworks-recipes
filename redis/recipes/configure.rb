@@ -8,6 +8,8 @@ Chef::Log.info "1234567890"
 
 Chef::Log.info node[:opsworks][:layers][:redis][:instances][:redis1]
 
+Chef::Log.info node[:opsworks][:instance][:hostname]
+
 node[:deploy].each do |application, deploy|
   deploy = node[:deploy][application]
 
