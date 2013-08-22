@@ -6,15 +6,9 @@ Chef::Log.info "~~~~~~~~~~"
 Chef::Log.info "~~~~~~~~~~"
 Chef::Log.info "1234567890"
 
-Chef::Log.info node[:opsworks][:layers][:redis][:instances][:redis1]
-
-Chef::Log.info node[:opsworks][:instance][:hostname]
-
-Chef::Log.info node[:environment]
-
 node[:deploy].each do |application, deploy|
-  deploy = node[:deploy][application]
 
-  Chef::Log.info deploy[:rails_env]
+	Chef::Log.info node[:opsworks][:layers][:redis][:instances][:redis1][:public_dns_name]
+  Chef::Log.info node[:deploy][application][:rails_env]
 
 end
